@@ -1,0 +1,18 @@
+# 依存（各自 npm install する）
+node_modules/
+
+# ランタイム生成物（DBはメモリ上。念のため）
+*.db
+*.sqlite
+*.sqlite3
+
+# ビルド済みスライド（slides.md から再生成できるため git には含めない）
+slides/slides.pdf
+slides/slides.pptx
+
+# OS / エディタ
+.DS_Store
+*.log
+
+# Office 一時ロックファイル
+~$*

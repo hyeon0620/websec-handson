@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif">
+<defs><marker id="ah" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#8a9199"/></marker></defs>
+<rect x="0" y="0" width="1000" height="500" fill="#ffffff"/>
+
+<!-- 左：罠サイト（別ドメイン） -->
+<g transform="translate(30,70)">
+  <rect x="0" y="0" width="380" height="250" rx="12" fill="#ffffff" stroke="#c4cad0" stroke-width="2.5"/>
+  <path d="M0,12 a12,12 0 0 1 12,-12 h356 a12,12 0 0 1 12,12 v30 h-380 Z" fill="#eef2f6"/>
+  <rect x="60" y="10" width="300" height="22" rx="11" fill="#fbe7d5" stroke="#e2792b" stroke-width="1.5"/>
+  <text x="72" y="26" font-family="'Courier New',monospace" font-size="15" fill="#b4600f">evil-cat.example</text>
+  <text x="190" y="82" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f2933">かわいい猫の画像まとめ</text>
+  <!-- 猫のイラスト -->
+  <g transform="translate(140,96)">
+    <ellipse cx="50" cy="70" rx="34" ry="24" fill="#c9ced3"/>
+    <circle cx="50" cy="38" r="28" fill="#c9ced3"/>
+    <path d="M30,20 L23,-2 L47,14 Z" fill="#c9ced3"/><path d="M70,20 L77,-2 L53,14 Z" fill="#c9ced3"/>
+    <circle cx="40" cy="36" r="3.5" fill="#3a3f45"/><circle cx="60" cy="36" r="3.5" fill="#3a3f45"/>
+    <path d="M45,46 Q50,50 55,46" fill="none" stroke="#3a3f45" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="190" y="234" text-anchor="middle" font-size="15" fill="#5a626b">開いた瞬間、裏でリクエストを送信</text>
+</g>
+<text x="220" y="52" text-anchor="middle" font-size="18" font-weight="bold" fill="#b4600f">別サイト（攻撃者）</text>
+
+<!-- 右：本物のアプリ（別ドメイン） -->
+<g transform="translate(590,70)">
+  <rect x="0" y="0" width="380" height="250" rx="12" fill="#ffffff" stroke="#2e7db5" stroke-width="2.5"/>
+  <path d="M0,12 a12,12 0 0 1 12,-12 h356 a12,12 0 0 1 12,12 v30 h-380 Z" fill="#e6f0f8"/>
+  <rect x="60" y="10" width="300" height="22" rx="11" fill="#e6f0f8" stroke="#2e7db5" stroke-width="1.5"/>
+  <text x="72" y="26" font-family="'Courier New',monospace" font-size="15" fill="#1f5c8b">chat.myapp.example</text>
+  <text x="190" y="80" text-anchor="middle" font-size="19" font-weight="bold" fill="#1f2933">あなたのチャット（ログイン中）</text>
+  <!-- ゴミ箱＝全削除 -->
+  <g transform="translate(150,100)">
+    <rect x="6" y="24" width="68" height="66" rx="8" fill="#edeff1" stroke="#8a9199" stroke-width="2.5"/>
+    <rect x="0" y="10" width="80" height="12" rx="6" fill="#8a9199"/><rect x="28" y="2" width="24" height="8" rx="4" fill="#8a9199"/>
+    <line x1="26" y1="36" x2="26" y2="80" stroke="#c4cad0" stroke-width="3"/><line x1="40" y1="36" x2="40" y2="80" stroke="#c4cad0" stroke-width="3"/><line x1="54" y1="36" x2="54" y2="80" stroke="#c4cad0" stroke-width="3"/>
+  </g>
+  <text x="190" y="234" text-anchor="middle" font-size="16" font-weight="bold" fill="#b4600f">本人と誤認して実行 ＝ 全削除</text>
+</g>
+<text x="780" y="52" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f5c8b">本物のアプリ</text>
+
+<!-- 中央：リクエスト＋Cookie -->
+<line x1="415" y1="180" x2="585" y2="180" stroke="#8a9199" stroke-width="4" marker-end="url(#ah)"/>
+<text x="500" y="150" text-anchor="middle" font-size="16" fill="#5a626b">裏でリクエスト</text>
+<!-- Cookie が自動で付く -->
+<g transform="translate(500,182)">
+  <circle cx="0" cy="0" r="24" fill="#f0a868" stroke="#b4600f" stroke-width="2"/>
+  <circle cx="-7" cy="-5" r="3.2" fill="#b4600f"/><circle cx="6" cy="2" r="3.2" fill="#b4600f"/><circle cx="-2" cy="9" r="2.8" fill="#b4600f"/><circle cx="9" cy="-8" r="2.4" fill="#b4600f"/>
+</g>
+<text x="500" y="240" text-anchor="middle" font-size="16" font-weight="bold" fill="#b4600f">あなたのCookieが</text>
+<text x="500" y="262" text-anchor="middle" font-size="16" font-weight="bold" fill="#b4600f">自動で付く</text>
+
+<!-- 帯 -->
+<rect x="40" y="430" width="920" height="52" rx="12" fill="#fbe7d5" stroke="#e2792b" stroke-width="2.5"/>
+<text x="500" y="463" text-anchor="middle" font-size="22" font-weight="bold" fill="#b4600f">別サイトから来たのに、あなたのCookieが付くのでアプリは本物と誤認する</text>
+</svg>

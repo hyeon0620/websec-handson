@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" font-family="'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif">
+<defs><marker id="ah" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#8a9199"/></marker></defs>
+<rect x="0" y="0" width="1000" height="400" fill="#ffffff"/>
+
+<!-- ブラウザ -->
+<g transform="translate(30,115)">
+  <rect x="0" y="0" width="290" height="165" rx="12" fill="#ffffff" stroke="#c4cad0" stroke-width="2.5"/>
+  <path d="M0,12 a12,12 0 0 1 12,-12 h266 a12,12 0 0 1 12,12 v26 h-290 Z" fill="#eef2f6"/>
+  <circle cx="18" cy="19" r="4.5" fill="#c4cad0"/><circle cx="34" cy="19" r="4.5" fill="#c4cad0"/><circle cx="50" cy="19" r="4.5" fill="#c4cad0"/>
+  <rect x="24" y="58" width="170" height="16" rx="8" fill="#e6f0f8"/>
+  <rect x="24" y="86" width="242" height="12" rx="6" fill="#eef2f6"/>
+  <rect x="24" y="106" width="242" height="12" rx="6" fill="#eef2f6"/>
+  <rect x="24" y="126" width="140" height="12" rx="6" fill="#eef2f6"/>
+</g>
+<text x="175" y="308" text-anchor="middle" font-size="20" font-weight="bold" fill="#1f2933">ブラウザ（利用者）</text>
+
+<!-- サーバー -->
+<g transform="translate(475,125)">
+  <rect x="0" y="0" width="130" height="150" rx="12" fill="#e6f0f8" stroke="#2e7db5" stroke-width="2.5"/>
+  <rect x="18" y="18" width="94" height="24" rx="5" fill="#ffffff" stroke="#bcd6ec"/><circle cx="100" cy="30" r="5" fill="#2e7db5"/>
+  <rect x="18" y="50" width="94" height="24" rx="5" fill="#ffffff" stroke="#bcd6ec"/><circle cx="100" cy="62" r="5" fill="#2e7db5"/>
+  <rect x="18" y="82" width="94" height="24" rx="5" fill="#ffffff" stroke="#bcd6ec"/><circle cx="100" cy="94" r="5" fill="#2e7db5"/>
+</g>
+<text x="540" y="308" text-anchor="middle" font-size="20" font-weight="bold" fill="#1f2933">サーバー（アプリ）</text>
+
+<!-- DB -->
+<g transform="translate(810,130)">
+  <path d="M0,20 v100 a55,18 0 0 0 110,0 v-100" fill="#edeff1" stroke="#8a9199" stroke-width="2.5"/>
+  <ellipse cx="55" cy="20" rx="55" ry="18" fill="#f7f8f9" stroke="#8a9199" stroke-width="2.5"/>
+  <path d="M0,60 a55,18 0 0 0 110,0" fill="none" stroke="#c4cad0" stroke-width="2"/>
+  <path d="M0,92 a55,18 0 0 0 110,0" fill="none" stroke="#c4cad0" stroke-width="2"/>
+</g>
+<text x="865" y="308" text-anchor="middle" font-size="20" font-weight="bold" fill="#1f2933">データベース</text>
+
+<!-- ①リクエスト（browser→server）／③レスポンス（server→browser）-->
+<line x1="325" y1="168" x2="470" y2="168" stroke="#8a9199" stroke-width="3.5" marker-end="url(#ah)"/>
+<text x="397" y="156" text-anchor="middle" font-size="16" fill="#5a626b">①リクエスト</text>
+<line x1="470" y1="230" x2="327" y2="230" stroke="#8a9199" stroke-width="3.5" marker-end="url(#ah)"/>
+<text x="397" y="252" text-anchor="middle" font-size="16" fill="#5a626b">③レスポンス</text>
+<text x="397" y="270" text-anchor="middle" font-size="13" fill="#8a9199">(HTMLを返す)</text>
+
+<!-- ②データの読み書き（server↔db） -->
+<line x1="608" y1="185" x2="805" y2="185" stroke="#8a9199" stroke-width="3.5" marker-end="url(#ah)"/>
+<line x1="805" y1="210" x2="608" y2="210" stroke="#8a9199" stroke-width="3.5" marker-end="url(#ah)"/>
+<text x="706" y="168" text-anchor="middle" font-size="16" fill="#5a626b">②データの読み書き</text>
+
+<!-- Cookie -->
+<g transform="translate(397,95)">
+  <circle cx="0" cy="0" r="15" fill="#f0a868" stroke="#b4600f" stroke-width="2"/>
+  <circle cx="-5" cy="-3" r="2.2" fill="#b4600f"/><circle cx="4" cy="2" r="2.2" fill="#b4600f"/><circle cx="-1" cy="6" r="1.8" fill="#b4600f"/>
+</g>
+<text x="397" y="58" text-anchor="middle" font-size="16" fill="#b4600f">ログイン状態は Cookie で記憶</text>
+</svg>
