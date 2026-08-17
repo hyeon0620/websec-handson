@@ -33,6 +33,13 @@ async function renderMessages() {
     row.innerHTML = `<span class="time">${m.created_at}</span>
                      <span class="name">${m.username}</span>
                      <span class="body">${m.content}</span>`;
+
+    // --- 正解（上の row.innerHTML の3行を消して、下の4行のコメントを外す）--------
+    // const time = document.createElement('span'); time.className = 'time'; time.textContent = m.created_at;
+    // const name = document.createElement('span'); name.className = 'name'; name.textContent = m.username;
+    // const body = document.createElement('span'); body.className = 'body'; body.textContent = m.content;
+    // row.append(time, name, body);   // textContent は「ただの文字」＝スクリプトが動かない
+    // ---------------------------------------------------------------------------
     // ▲▲▲ 【課題2】: ここまで ▲▲▲
 
     box.appendChild(row);
@@ -86,7 +93,9 @@ $('#messageForm').addEventListener('submit', async (e) => {
 // 直すときは、この fetch を method:'POST' にし、server.js も app.post に変える。
 $('#deleteAllLink').addEventListener('click', async (e) => {
   e.preventDefault();
-  await fetch('/api/messages/delete-all'); // ← 課題3の修正で { method: 'POST' } を足す
+  await fetch('/api/messages/delete-all'); // ← 課題3: 脆弱（GET）
+  // 正解（上の行を消して、下の行のコメントを外す）:
+  // await fetch('/api/messages/delete-all', { method: 'POST' });
   renderMessages();
 });
 
