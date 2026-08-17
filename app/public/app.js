@@ -1,6 +1,6 @@
 // ===========================================================================
 //  画面側のJavaScript。
-//  【課題2】（XSS）はこのファイルの renderMessages の中にあります。
+//  【課題1】（XSS）はこのファイルの renderMessages の中にあります。
 // ===========================================================================
 
 const $ = (sel) => document.querySelector(sel);
@@ -28,7 +28,7 @@ async function renderMessages() {
     const row = document.createElement('div');
     row.className = 'msg';
 
-    // ▼▼▼ 【課題2】: ここが脆弱。ユーザーの入力を innerHTML でHTMLとして描画している ▼▼▼
+    // ▼▼▼ 【課題1】: ここが脆弱。ユーザーの入力を innerHTML でHTMLとして描画している ▼▼▼
     //     直し方：下の row.innerHTML の3行をコメントアウトし、「正解」の4行のコメントを外す
     row.innerHTML = `<span class="time">${m.created_at}</span>
                      <span class="name">${m.username}</span>
@@ -39,7 +39,7 @@ async function renderMessages() {
     // const name = document.createElement('span'); name.className = 'name'; name.textContent = m.username;
     // const body = document.createElement('span'); body.className = 'body'; body.textContent = m.content;
     // row.append(time, name, body);
-    // ▲▲▲ 【課題2】: ここまで ▲▲▲
+    // ▲▲▲ 【課題1】: ここまで ▲▲▲
 
     box.appendChild(row);
   }
@@ -88,11 +88,11 @@ $('#messageForm').addEventListener('submit', async (e) => {
 
 // ---- 全削除ボタン ----------------------------------------------------------
 // アプリ自身の削除は fetch で呼ぶ（ページ遷移しないので「騙された」画面は出ない）。
-// いまは GET。これが罠ページからも呼べてしまうのが【課題3】(CSRF)。
+// いまは GET。これが罠ページからも呼べてしまうのが【課題2】(CSRF)。
 // 直すときは、この fetch を method:'POST' にし、server.js も app.post に変える。
 $('#deleteAllLink').addEventListener('click', async (e) => {
   e.preventDefault();
-  await fetch('/api/messages/delete-all'); // ← 課題3 脆弱(GET)。この行をコメントアウト
+  await fetch('/api/messages/delete-all'); // ← 課題2 脆弱(GET)。この行をコメントアウト
   // await fetch('/api/messages/delete-all', { method: 'POST' }); // ← 正解: このコメントを外す
   renderMessages();
 });

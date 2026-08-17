@@ -71,7 +71,7 @@ XSSの怖さは「保存されて **他人の** ブラウザで動く」こと�
 > 偽ログイン画面で入力を抜いたりできる。stored XSS はサーバー保存なので、
 > **ブラウザのキャッシュを消しても消えない**（＝この怖さそのもの）。
 
-**② 直す** — [app/public/app.js の 【課題2】](app/public/app.js#L31)
+**② 直す** — [app/public/app.js の 【課題1】](app/public/app.js#L31)
 
 修正前（脆弱）: ユーザー入力を `innerHTML`（＝HTMLとして解釈）で描画している。
 
@@ -121,7 +121,7 @@ row.append(time, name, body);
 
 **② 直す** — 原因は「状態を変える操作なのに **GET** で受けている」こと。**2か所**を POST にする。
 
-[app/server.js の 【課題3】](app/server.js#L113)（`app.get` → `app.post`）:
+[app/server.js の 【課題2】](app/server.js#L119)（`app.get` → `app.post`）:
 
 ```js
 // 修正前
@@ -130,7 +130,7 @@ app.get('/api/messages/delete-all', (req, res) => {
 app.post('/api/messages/delete-all', (req, res) => {
 ```
 
-[app/public/app.js の削除fetch](app/public/app.js#L85)（`fetch` に `{ method: 'POST' }` を足す）:
+[app/public/app.js の削除fetch](app/public/app.js#L95)（`fetch` に `{ method: 'POST' }` を足す）:
 
 ```js
 $('#deleteAllLink').addEventListener('click', async (e) => {
@@ -169,7 +169,7 @@ admin' --
 > （補足：同じ穴で `' UNION SELECT username, password FROM users --` を使えば、
 > DBの中身を吸い出す**情報漏洩**にもつながる。今日は分かりやすい「認証突破」を体験する）
 
-**② 直す** — [app/server.js の 【課題1】](app/server.js#L45)
+**② 直す** — [app/server.js の 【課題3】](app/server.js#L45)
 
 修正前（脆弱）: 入力を文字列連結でSQLに貼り付けている。
 

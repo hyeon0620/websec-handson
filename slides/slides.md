@@ -249,7 +249,7 @@ res.cookie('session', 合言葉)
 <div class="msg">自分で直し、同じ投稿が<span class="k">文字列のまま</span>表示されることを確認する。</div>
 </div>
 
-<div class="hands"><b>やってみる</b> &nbsp; <code>public/app.js</code> の <code>【課題2】</code> を <code>textContent</code> に直して保存</div>
+<div class="hands"><b>やってみる</b> &nbsp; <code>public/app.js</code> の <code>【課題1】</code> を <code>textContent</code> に直して保存</div>
 
 - 同じ `<img ...>` をもう一度投稿 → **アラートは出ず、文字がそのまま表示される**
 
@@ -346,7 +346,7 @@ res.cookie('session', id, {
 <div class="msg">自分で直し、同じ罠リンクを踏んでも<span class="k">何も起きない</span>ことを確認する。</div>
 </div>
 
-<div class="hands"><b>やってみる</b> &nbsp; <code>server.js</code> と <code>app.js</code> の <code>【課題3】</code> を POST に直して保存</div>
+<div class="hands"><b>やってみる</b> &nbsp; <code>server.js</code> と <code>app.js</code> の <code>【課題2】</code> を POST に直して保存</div>
 
 - もう一度「猫の画像」リンクを踏む → **今度はメッセージが消えない**
 
@@ -444,7 +444,7 @@ db.prepare(sql).get();</div></div>
 <div class="msg">自分で直し、同じ <code>admin' --</code> が<span class="k">弾かれる</span>ことを確認する。</div>
 </div>
 
-<div class="hands"><b>やってみる</b> &nbsp; <code>server.js</code> の <code>【課題1】</code> をプレースホルダに直して保存</div>
+<div class="hands"><b>やってみる</b> &nbsp; <code>server.js</code> の <code>【課題3】</code> をプレースホルダに直して保存</div>
 
 - もう一度 `admin' --` でログイン → **今度は「違います」で弾かれる**
 - `alice` / `alice123` では今まで通りログインできることも確認

@@ -4,9 +4,9 @@
 //  このファイルの中に、直してもらう課題が3つ埋め込まれています。
 //  「課題」で検索すると、直す場所にすぐ飛べます。
 //
-//    【課題1】 … SQLインジェクション（ログイン）
-//    【課題2】 … XSS（メッセージ表示）… こちらは public/app.js 側
-//    【課題3】 … CSRF（全メッセージ削除）
+//    【課題1】 … XSS（メッセージ表示）… こちらは public/app.js 側
+//    【課題2】 … CSRF（全メッセージ削除）
+//    【課題3】 … SQLインジェクション（ログイン）
 //
 //  ※ このアプリは「攻撃が成功する状態」で配布しています。
 //    localhost でだけ動かしてください。インターネットに公開しないこと。
@@ -33,7 +33,7 @@ function currentUser(req) {
 
 // -------------------------------------------------------------------------
 //  ログイン
-//  【課題1】: SQLインジェクション
+//  【課題3】: SQLインジェクション
 //
 //  下の行は、ユーザーが入力した文字列をそのままSQL文に埋め込んでいる。
 //  そのため username に  admin' --  と入れるだけで、
@@ -42,7 +42,7 @@ function currentUser(req) {
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
-  // ▼▼▼ 【課題1】: ここが脆弱。入力を文字列連結でSQLに埋め込んでいる ▼▼▼
+  // ▼▼▼ 【課題3】: ここが脆弱。入力を文字列連結でSQLに埋め込んでいる ▼▼▼
   //   直し方：下の脆弱な2行をコメントアウトし、「正解」の3行のコメントを外す
   const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
   const user = db.prepare(sql).get();
@@ -51,7 +51,7 @@ app.post('/api/login', (req, res) => {
   // const user = db
   //   .prepare('SELECT * FROM users WHERE username = ? AND password = ?')
   //   .get(username, password);
-  // ▲▲▲ 【課題1】: ここまで ▲▲▲
+  // ▲▲▲ 【課題3】: ここまで ▲▲▲
 
   if (!user) {
     return res.status(401).json({ error: 'ユーザー名かパスワードが違います' });
@@ -62,7 +62,7 @@ app.post('/api/login', (req, res) => {
   sessions.set(sid, user.display_name);
   res.cookie('session', sid, {
     httpOnly: true,
-    sameSite: 'lax', // ← CSRFの課題3に関係する。今は触らない
+    sameSite: 'lax', // ← CSRFの課題2に関係する。今は触らない
   });
   res.json({ display_name: user.display_name });
 });
@@ -79,7 +79,7 @@ app.get('/api/me', (req, res) => {
 
 // -------------------------------------------------------------------------
 //  メッセージ一覧・投稿
-//  （XSSの課題2は、表示する側 = public/app.js にあります）
+//  （XSSの課題1は、表示する側 = public/app.js にあります）
 // -------------------------------------------------------------------------
 app.get('/api/messages', (req, res) => {
   const rows = db.prepare('SELECT username, content, created_at FROM messages ORDER BY id').all();
@@ -105,7 +105,7 @@ app.post('/api/messages', (req, res) => {
 
 // -------------------------------------------------------------------------
 //  全メッセージ削除
-//  【課題3】: CSRF
+//  【課題2】: CSRF
 //
 //  問題点は2つ:
 //   (1) 状態を変える操作なのに GET で受け付けている
@@ -116,12 +116,12 @@ app.post('/api/messages', (req, res) => {
 //  一緒に飛んでいって、自分のメッセージが全部消える。
 // -------------------------------------------------------------------------
 
-// ▼▼▼ 【課題3】: ここが脆弱。状態変更なのに GET で受けている ▼▼▼
+// ▼▼▼ 【課題2】: ここが脆弱。状態変更なのに GET で受けている ▼▼▼
 //   直し方：下の app.get の行をコメントアウトし、「正解」の app.post の行のコメントを外す
 //   （app.js の削除fetch も POST にする）
 app.get('/api/messages/delete-all', (req, res) => {
 // app.post('/api/messages/delete-all', (req, res) => {   // ← 正解: このコメントを外す
-  // ▲▲▲ 【課題3】: ここまで ▲▲▲
+  // ▲▲▲ 【課題2】: ここまで ▲▲▲
   const name = currentUser(req);
   if (!name) return res.status(401).send('ログインしていません');
 
