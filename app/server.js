@@ -43,14 +43,14 @@ app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
   // ▼▼▼ 【課題1】: ここが脆弱。入力を文字列連結でSQLに埋め込んでいる ▼▼▼
+  //   直し方：下の脆弱な2行をコメントアウトし、「正解」の3行のコメントを外す
   const sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
   const user = db.prepare(sql).get();
 
-  // --- 正解（上の2行を消して、下の3行のコメントを外す）-----------------------
+  // 正解（プレースホルダ。? は必ず「値」として渡る＝SQL文の構造を壊せない）
   // const user = db
   //   .prepare('SELECT * FROM users WHERE username = ? AND password = ?')
-  //   .get(username, password);   // ? は必ず「値」として渡る＝SQL文の構造を壊せない
-  // ---------------------------------------------------------------------------
+  //   .get(username, password);
   // ▲▲▲ 【課題1】: ここまで ▲▲▲
 
   if (!user) {
@@ -117,10 +117,11 @@ app.post('/api/messages', (req, res) => {
 // -------------------------------------------------------------------------
 
 // ▼▼▼ 【課題3】: ここが脆弱。状態変更なのに GET で受けている ▼▼▼
+//   直し方：下の app.get の行をコメントアウトし、「正解」の app.post の行のコメントを外す
+//   （app.js の削除fetch も POST にする）
 app.get('/api/messages/delete-all', (req, res) => {
-  // 正解: 上の行を app.get → app.post に変える（app.js の fetch も POST にする）
-  //   app.post('/api/messages/delete-all', (req, res) => {
-  // ▲▲▲ 【課題3】: 直すときは app.get を app.post に変える（app.js側も直す）▲▲▲
+// app.post('/api/messages/delete-all', (req, res) => {   // ← 正解: このコメントを外す
+  // ▲▲▲ 【課題3】: ここまで ▲▲▲
   const name = currentUser(req);
   if (!name) return res.status(401).send('ログインしていません');
 

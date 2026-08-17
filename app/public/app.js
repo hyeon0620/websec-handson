@@ -29,17 +29,16 @@ async function renderMessages() {
     row.className = 'msg';
 
     // ▼▼▼ 【課題2】: ここが脆弱。ユーザーの入力を innerHTML でHTMLとして描画している ▼▼▼
-    //     そのため <img src=x onerror=alert(1)> のような投稿がスクリプトとして動く。
+    //     直し方：下の row.innerHTML の3行をコメントアウトし、「正解」の4行のコメントを外す
     row.innerHTML = `<span class="time">${m.created_at}</span>
                      <span class="name">${m.username}</span>
                      <span class="body">${m.content}</span>`;
 
-    // --- 正解（上の row.innerHTML の3行を消して、下の4行のコメントを外す）--------
+    // 正解（textContent は「ただの文字」として表示＝スクリプトが動かない）
     // const time = document.createElement('span'); time.className = 'time'; time.textContent = m.created_at;
     // const name = document.createElement('span'); name.className = 'name'; name.textContent = m.username;
     // const body = document.createElement('span'); body.className = 'body'; body.textContent = m.content;
-    // row.append(time, name, body);   // textContent は「ただの文字」＝スクリプトが動かない
-    // ---------------------------------------------------------------------------
+    // row.append(time, name, body);
     // ▲▲▲ 【課題2】: ここまで ▲▲▲
 
     box.appendChild(row);
@@ -93,9 +92,8 @@ $('#messageForm').addEventListener('submit', async (e) => {
 // 直すときは、この fetch を method:'POST' にし、server.js も app.post に変える。
 $('#deleteAllLink').addEventListener('click', async (e) => {
   e.preventDefault();
-  await fetch('/api/messages/delete-all'); // ← 課題3: 脆弱（GET）
-  // 正解（上の行を消して、下の行のコメントを外す）:
-  // await fetch('/api/messages/delete-all', { method: 'POST' });
+  await fetch('/api/messages/delete-all'); // ← 課題3 脆弱(GET)。この行をコメントアウト
+  // await fetch('/api/messages/delete-all', { method: 'POST' }); // ← 正解: このコメントを外す
   renderMessages();
 });
 
